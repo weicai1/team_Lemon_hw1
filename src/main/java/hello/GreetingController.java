@@ -181,7 +181,7 @@ public class GreetingController {
         session.setAttribute("wordList", j.wordList);
         session.setAttribute("redset", redset);
         session.setAttribute("greenset", greenset);
-        return "/game";
+        return "game";
     }
 
     @GetMapping("/back")
@@ -288,7 +288,7 @@ public class GreetingController {
                 e.printStackTrace();
             }
             //System.out.println("end");
-            return "/aiwin";
+            return "aiwin";
         }
         j.process2(step-1, Integer.parseInt(uu), pick);
         String test=j.process1(step);
@@ -354,10 +354,10 @@ public class GreetingController {
                 e.printStackTrace();
             }
 
-            return "/gotwrong";
+            return "gotwrong";
        }
         session.setAttribute("gamestate", null);
-        return "/game";
+        return "game";
     }
 
 
@@ -382,9 +382,9 @@ public class GreetingController {
             greenset.remove(letter);
         }
         if (from_.equals("game2")) {
-            return "/game2";
+            return "game2";
         }
-        return "/game";
+        return "game";
     }
 
     @PostMapping("/game")
@@ -401,7 +401,7 @@ public class GreetingController {
         System.out.println(secret);
         if(session.getAttribute("gamestate")==null){
             if (wl.indexOf(uu)<0) {
-                return "/gamebadguess";
+                return "gamebadguess";
             }
             //good guess
             else{
@@ -473,14 +473,14 @@ public class GreetingController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    return "/userwin";
+                    return "userwin";
                 }
                 int step = (int)session.getAttribute("step");
                 String pick=j.process1(step);
                 session.setAttribute("step",step+1);
                 session.setAttribute("currentpick",pick);
                 session.setAttribute("gamestate",2);
-                return "/game2";
+                return "game2";
             }
         }
         //    if(session.getAttribute("gamestate").equals(2)){
@@ -490,7 +490,7 @@ public class GreetingController {
         //       session.setAttribute("gamestate",null);
         //       return "/game";
         //  }
-        return "/game";
+        return "game";
     }
 
 
@@ -509,6 +509,26 @@ public class GreetingController {
         File file = new File(name+".json");
         session.setAttribute("list",games);
         if(!file.exists()){
+            try (FileReader reader = new FileReader(name + ".json")) {
+                //Read JSON file
+                Object obj = jsonParser.parse(reader);
+
+                JSONObject g = (JSONObject) obj;
+                //System.out.println(games);
+                Object[] keys = g.keySet().toArray();
+                Arrays.sort(keys);
+                for ( Object key : keys ) {
+                    games.add((String)key);
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             return null;
         }
         else {
