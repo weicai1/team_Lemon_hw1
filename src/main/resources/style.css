@@ -1,0 +1,133 @@
+body {
+    background-image:
+            linear-gradient(
+                    to right,
+                    #d6e8a7,
+                    #d6e8a7 15%,
+                    #ffd426 15%,
+                    #ffd426 85%,
+                    #d6e8a7 85%
+            );
+}
+h1 {
+     color:#295f2d;
+     text-align:center;
+    font-family:"Chalkduster";
+    font-size:40px;
+ }
+p {
+    font-family:"Chalkduster";
+    font-size:25px;
+    text-align:center;
+}
+form {
+    text-align:center;
+}
+a:link {
+    color: #295f2d;
+    font-family: "Chalkduster";
+    padding: 4px 4px;
+    text-align: center;
+    text-decoration: none;
+}
+a:visited {
+    color: purple;
+    font-weight: bold;
+}
+input[type=text] {
+    border: 0;
+    border-bottom: 1px solid #295f2d;
+    outline: 0;
+    background-color: #ffd426;
+    font-family: "Chalkduster";
+    font-size: 1em;
+    outline-width: 28px;
+}
+input[type=submit], input[type=reset] {
+    background-color: #295f2d;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family : "Chalkduster";
+    font-size: 0.7em;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+input:focus {
+
+    background-color: #ffe67c;
+
+}
+
+/* Ripple magic */
+button{
+    font-family : "Chalkduster";
+    position: relative;
+    overflow: hidden;
+
+    border: none;
+    cursor: pointer;
+    color: white;
+
+    border-radius: 2px;
+    font-size: 20px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
+    background: #295f2d;
+
+    float: left;
+    border: 1px solid green;
+}
+
+button:hover {background-color: #3e8e41}
+
+button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+th, td {
+    padding: 6px 3px;
+    font-family : "Chalkduster";
+}
+input[type=button]{
+    background-color: #295f2d;
+    border: none;
+    color: white;
+    width: 45px;
+    height: 30px;
+    text-decoration: none;
+
+    cursor: pointer;
+    border-radius: 12px;
+    font-family : "Chalkduster";
+    font-size: 1em;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    float: left;
+    border: 1px solid green;
+}
+.main {
+    -webkit-filter: blur(3px);
+}
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,.8);
+}
+.modal-wrapper {
+    margin: 50px auto;
+    width: 230px;
+    height: 130px;
+    padding: 20px;
+    border: 1px solid green;
+    background: white;
+    box-shadow: 2px 3px 8px green;
+}
+table{
+    aligen:"center";
+}

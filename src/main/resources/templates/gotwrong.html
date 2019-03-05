@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/style.css}" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+</head>
+<body>
+<div class="main">
+    <div class="header"><h1 align="center">Welcome to Jotto</h1></div>
+    <script>
+        function red(d){
+            var letters=document.getElementsByClassName("letter");
+            var i;
+            for(i=0;i<letters.length;i++){
+                if(letters[i].innerHTML==d) {
+                    letters[i].style.color = "red";
+                }
+            }
+        }
+        function green(d){
+            var letters=document.getElementsByClassName("letter");
+            var i;
+            for(i=0;i<letters.length;i++){
+                if(letters[i].innerHTML==d) {
+                    letters[i].style.color = "green";
+                }
+            }
+        }
+        function f(d){
+            var letters=document.getElementsByClassName("letter");
+            var i;
+            for(i=0;i<letters.length;i++){
+                if(letters[i].innerHTML==d) {
+
+
+                    if(letters[i].style.color == "red") {
+                        //letters[i].style.color = "green";
+                        window.location.replace("/changecolor?color=green&letter="+d+"&from=game2");
+                        i=letters.length+1;
+                    }
+
+                    else if(letters[i].style.color == "green"){
+                        //letters[i].style.color = "black";
+                        window.location.replace("/changecolor?color=black&letter="+d+"&from=game2");
+                        i=letters.length+1;
+                    }
+                    else{
+                        //letters[i].style.color = "red";
+                        window.location.replace("/changecolor?color=red&letter="+d+"&from=game2");
+                        i=letters.length+1;
+                    }
+
+                }
+
+            }
+        }
+    </script>
+    <div style="position: relative; left: 120px;">
+    <button onclick="f('a')" class="letter">a</button>
+    <button onclick="f('b')" class="letter">b</button>
+    <button onclick="f('c')" class="letter">c</button>
+    <button onclick="f('d')" class="letter">d</button>
+    <button onclick="f('e')" class="letter">e</button>
+    <button onclick="f('f')" class="letter">f</button>
+    <button onclick="f('g')" class="letter">g</button>
+    <button onclick="f('h')" class="letter">h</button>
+    <button onclick="f('i')" class="letter">i</button>
+    <button onclick="f('j')" class="letter">j</button>
+    <button onclick="f('k')" class="letter">k</button>
+    <button onclick="f('l')" class="letter">l</button>
+    <button onclick="f('m')" class="letter">m</button>
+    <button onclick="f('n')" class="letter">n</button>
+    <button onclick="f('o')" class="letter">o</button>
+    <button onclick="f('p')" class="letter">p</button>
+    <button onclick="f('q')" class="letter">q</button>
+    <button onclick="f('r')" class="letter">r</button>
+    <button onclick="f('s')" class="letter">s</button>
+    <button onclick="f('t')" class="letter">t</button>
+    <button onclick="f('u')" class="letter">u</button>
+    <button onclick="f('v')" class="letter">v</button>
+    <button onclick="f('w')" class="letter">w</button>
+    <button onclick="f('x')" class="letter">x</button>
+    <button onclick="f('y')" class="letter">y</button>
+    <button onclick="f('z')" class="letter">z</button>
+    </div>
+    <form action="#" th:action="@{/game}"  th:object="${ug}"  method="post">
+        <div align="center">
+        <table width="60%">
+            <tr>
+                <th>You</th>
+                <th>Ai</th>
+            </tr>
+            <tr>
+                <td width="50%" align="center"><input id="forminput" type="text" disabled="disabled" maxlength="5"  /></td>
+                <td width="50%" align="center" th:text="${session.currentpick}">
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="center"><input type="submit" value="Submit" disabled="disabled" /></td>
+                <td width=" 50%" align="center">
+                    <a href="/aiturn?value=Yes"><input type="button" value="Yes" /></a>
+                    <a href="/aiturn?value=0"><input type="button" value="0" /></a>
+                    <a href="/aiturn?value=1"><input type="button" value="1" /></a>
+                    <a href="/aiturn?value=2"><input type="button" value="2" /></a>
+                    <a href="/aiturn?value=3"><input type="button" value="3" /></a>
+                    <a href="/aiturn?value=4"><input type="button" value="4" /></a>
+                    <a href="/aiturn?value=5"><input type="button" value="5" /></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr th:each="m : ${session.userguess}">
+                            <td class="letter" th:text="${m.get(0)}"/><td class="letter" th:text="${m.get(1)}"/><td class="letter" th:text="${m.get(2)}"/><td class="letter" th:text="${m.get(3)}"/><td class="letter" th:text="${m.get(4)}"/><td th:text="${m.get(5)}"/><td th:text="${m.get(6)}"/>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr th:each="m : ${session.aiguess}">
+                            <td class="letter" th:text="${m.get(0)}"/><td class="letter" th:text="${m.get(1)}"/><td class="letter" th:text="${m.get(2)}"/><td class="letter" th:text="${m.get(3)}"/><td class="letter" th:text="${m.get(4)}"/><td th:text="${m.get(5)}"/><td th:text="${m.get(6)}"/>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        </div>
+    </form>
+    <script th:inline="javascript">
+        var redset = /*[[${session.redset}]]*/ 'aaa';
+        var greenset = /*[[${session.greenset}]]*/ 'aaa';
+        var i;
+        for (i=0;i<redset.length;i++){
+            red(redset[i]);
+        }
+        for (i=0;i<greenset.length;i++){
+            green(greenset[i]);
+        }
+    </script>
+    <a href="/back">back</a>
+</div>
+<div class="modal">
+    <div class="modal-wrapper">
+        <h1>You got wrong.</h1>
+        <table>
+            <tr>
+                <td><a href="/game"><button>New Game</button></a><td>
+                <td><a href="/back"><button>Back</button></a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

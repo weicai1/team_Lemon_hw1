@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <link th:href="@{/style.css}" rel="stylesheet" type="text/css">
+    <title>Hello World!</title>
+</head>
+<body>
+<h1 th:inline="text" th:text="'Hello ' + ${session.Name} + '!'"></h1>
+
+<form th:action="@{/game}" method="get">
+    <input type="submit" value="New Game"/>
+</form>
+<form th:action="@{/pastgame}" method="post">
+    <input type="submit" value="Past Game Results"/>
+</form>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>

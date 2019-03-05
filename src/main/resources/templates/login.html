@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<a href="/">back</a>
+<div th:if="${session.state==2}">
+    Invalid username and password.
+</div>
+
+<div th:if="${session.state==3}">
+    Successfully log out.
+</div>
+<div th:if="${session.state==4}">
+    Successfully log out.
+</div>
+
+<h1>Sign in</h1>
+<form action="#" th:action="@{/login}" th:object="${login}" method="post">
+    <p>name: <input type="text" th:field="*{name}" /></p>
+    <p>password: <input type="text" th:field="*{password}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+
+</body>
+</html>

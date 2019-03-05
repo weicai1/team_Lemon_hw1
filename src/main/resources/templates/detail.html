@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/style.css}" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <title>Past Game</title>
+</head>
+<body>
+<a href="/hello">back</a>
+<h1 align="center">Past Games</h1>
+<table width="100%">
+    <tr>
+        <th>You</th>
+        <th>Ai</th>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tr th:each="m : ${session.userpast}">
+                    <td  th:text="${m.get(0)}"/><td  th:text="${m.get(1)}"/><td  th:text="${m.get(2)}"/><td  th:text="${m.get(3)}"/><td  th:text="${m.get(4)}"/><td th:text="${m.get(5)}"/><td th:text="${m.get(6)}"/>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table>
+                <tr th:each="m : ${session.aipast}">
+                    <td  th:text="${m.get(0)}"/><td  th:text="${m.get(1)}"/><td  th:text="${m.get(2)}"/><td  th:text="${m.get(3)}"/><td  th:text="${m.get(4)}"/><td th:text="${m.get(5)}"/><td th:text="${m.get(6)}"/>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

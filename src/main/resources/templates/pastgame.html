@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/style.css}" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <title>Past Game</title>
+</head>
+<body>
+<a href="/hello">back</a>
+<h1 align="center">Past Games</h1>
+<div align="center">
+<table width="100%">
+    <tr th:each="m : ${session.list}">
+
+        <td ><a th:href="@{/detail(date=${m})}"><div th:text="${m}"></div></a></td>
+    </tr>
+</table>
+</div>
+</body>
+</html>
